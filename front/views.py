@@ -1,23 +1,15 @@
 def contacts_view(request):
     return render(request, 'pages/contacts.html')
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth import authenticate, login, logout
-from django.http import JsonResponse
-from django.urls import reverse
-from django.views.decorators.http import require_http_methods
-from django.contrib.auth import get_user_model
+from django.contrib.auth import login, logout
 from django.contrib.auth.backends import ModelBackend
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
-from django.utils import timezone as django_timezone
 from .forms import (
     CustomUserCreationForm, 
     PhoneAuthForm,
     EmailAuthForm,
     UsernameAuthForm,
-    CategoryForm,
-    ProductForm,
-    CartItemForm,
     CartItemQuantityForm,
     OrderForm
 )
@@ -28,8 +20,6 @@ from .models import (
     Order,
     OrderItem
 )
-from datetime import datetime, timedelta
-from django.contrib import messages
 
 def main_page(request):
     # Get popular products for display

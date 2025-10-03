@@ -3,7 +3,6 @@ from django.urls import path
 from front import views
 from django.conf.urls.static import static
 from django.conf import settings
-from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
     # Администрирование и аутентификация
@@ -24,7 +23,7 @@ urlpatterns = [
     path('cart/update/<int:item_id>/', views.update_cart_item, name='update_cart_item'),
     path('cart/remove/<int:item_id>/', views.remove_from_cart, name='remove_from_cart'),
     
-    # 4. Заказы
+    # 3. Заказы
     path('checkout/', views.checkout_view, name='checkout'),
     path('order/success/<int:order_id>/', views.order_success_view, name='order_success'),
     path('orders/', views.orders_view, name='orders'),

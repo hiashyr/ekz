@@ -1,7 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from django.core.exceptions import ValidationError
 
 class CustomUser(AbstractUser):
     # Переопределение стандартных полей
@@ -141,7 +140,7 @@ class CartItem(models.Model):
             return self.product.price * self.quantity
         return 0
 
-# 4. Модели для заказов
+# 3. Модели для заказов
 class Order(models.Model):
     ORDER_STATUS_CHOICES = [
         ('pending', _('Pending')),
