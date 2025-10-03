@@ -23,26 +23,18 @@ from .models import (
     Category,
     Product,
     CartItem,
-    Favorite,
     Order,
-    OrderItem,
-    Review,
-    News,
+    OrderItem
 )
 from datetime import datetime, timedelta
 from django.contrib import messages
 
 def main_page(request):
-    # Get latest news for slider
-    latest_news = News.objects.all().order_by('-created_at')[:5]
     # Get popular products for display
     popular_products = Product.objects.all()[:8]
-    
     context = {
-        'latest_news': latest_news,
         'popular_products': popular_products
     }
-    
     return render(request, 'pages/main_page.html', context)
 
 def register_view(request):
@@ -131,9 +123,8 @@ def catalog_view(request):
 
 def product_detail_view(request, product_id):
     product = get_object_or_404(Product, id=product_id)
-    reviews = Review.objects.filter(product=product)
-    
-    return render(request, 'pages/product_detail.html')
+    context = {'product': product}
+    return render(request, 'pages/product_detail.html', context)
 
 # 2. Корзина
 @login_required
